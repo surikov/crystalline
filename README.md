@@ -1,3 +1,3 @@
 # crystalline
 
-(open)[defense/index.html]
+[open](defense/index.html)
