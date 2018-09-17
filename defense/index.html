@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+<title>Diamond Defense</title>
+
+<link href="./css/crystall.css" rel="stylesheet" type="text/css" />
+<script>
+		var mz = null;
+		var sfx = null;
+		var ya="on";
+		var nope="off";
+		function refreshOptions() {
+			if (mz != nope) {
+				mz = ya;
+			}
+			if (sfx != nope) {
+				sfx = ya;
+			}
+			document.getElementById("tMusic").innerHTML = "" + mz;
+			document.getElementById("tSFx").innerHTML = "" + sfx;
+		}
+		function resetState() {
+			console.log("resetState");
+			window.localStorage.setItem("lastState", "");
+			window.location.href = "crystal.html";
+		}
+		function toggleMusic() {
+			if (mz != nope) {
+				mz = nope;
+			} else {
+				mz = ya;
+			}
+			window.localStorage.setItem("mz", mz);
+			refreshOptions();
+		}
+		function toggleSoundFx() {
+			if (sfx != nope) {
+				sfx = nope;
+			} else {
+				sfx = ya;
+			}
+			window.localStorage.setItem("sfx", sfx);
+			refreshOptions();
+		}
+</script>
+</head>
+
+<body>
+	<h1>Diamond Defense</h1>
+	 
+	<p align="center">
+		Music: <a id="tMusic" href="javascript:toggleMusic();">on</a>
+	</p>
+	<p align="center">
+		Sound FX: <a id="tSFx" href="javascript:toggleSoundFx();">on</a>
+	</p>
+	<p align="center">
+		<a id="golink" href="javascript:resetState();">Start</a>
+	</p>
+	<p align="center">
+		<a href="crystalhelp.html">Help</a>
+	</p>
+	<p id="goold" align="center">
+		<a href="crystal.html">Continue saved game</a>
+	</p>
+	<!--
+	<p id="noold" align="center">
+		<em>продолжить</em>
+	</p>
+	
+	 
+	<p align="center">
+		<a href="test18.html">test18</a>
+	</p> -->
+	<script>
+		console.log("version 2.2.015");
+        
+        var text = null;
+		
+        try {
+	        text = window.localStorage.getItem("lastDate");
+			mz = window.localStorage.getItem("mz");
+			sfx = window.localStorage.getItem("sfx");
+			
+	        console.log("lastDate " + text);
+			console.log("mz " + mz);
+			console.log("sfx " + sfx);
+        }
+        catch (e) {
+	        console.log(e);
+        }
+        if (text != null) {
+	        document.getElementById("golink").innerHTML = "Start new game";
+			document.getElementById("goold").innerHTML = "<a href=\"crystal.html\">Continue saved game</a>";
+        }
+        else {
+	        document.getElementById("goold").innerHTML = "<em>Continue saved game</em>";
+        }
+        //console.log(window.innerWidth + ' x ' + window.innerHeight //
+        //        + " / " + document.documentElement.clientWidth + ' x ' + document.documentElement.clientHeight);
+        /*function animate(){
+	        console.log("animate");
+	        setTimeout(function(){
+		        requestAnimationFrame(animate);
+	        }, 999);
+        }
+        animate();*/
+        //requestAnimationFrame(animate);
+		refreshOptions();
+	</script>
+</body>
+</html>

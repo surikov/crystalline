@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Diamond Defense</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="initial-scale=1.0, width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+		
+		<script type="text/javascript" src="./js/three.68"></script>
+		<script type="text/javascript" src="./js/OrbitControls.js"></script>		
+		<script type="text/javascript" src="./js/Mirror.js"></script>
+		<script type="text/javascript" src="./js/cryrules.js"></script>
+		
+		<script type="text/javascript" src="./js/crymain.js"></script>
+		 
+		<style>
+			@font-face {
+				font-family: font_ttf; /* Гарнитура шрифта */
+				src: url(./fonts/okolaksBold.ttf); /* Для IE5-8 */
+				src: local(font_ttf), url(./fonts/okolaksBold.ttf); /* Для остальных браузеров */
+			}	
+			body {
+				margin-top: 0px;
+				margin-right: 0px;
+				margin-bottom: 0px;
+				margin-left: 0px;
+				padding-top: 0px;
+				padding-right: 0px;
+				padding-bottom: 0px;
+				padding-left: 0px;
+				border-top-width: 0px;
+				border-right-width: 0px;
+				border-bottom-width: 0px;
+				border-left-width: 0px;
+				border-top-style: none;
+				border-right-style: none;
+				border-bottom-style: none;
+				border-left-style: none;
+				background: #000066;
+				overflow-y:hidden;
+				overflow-x:hidden;
+			}
+			#hudSelect {
+				position: absolute;
+				top: 67%;
+				left:0%;
+				width: 100%;
+				height: 33%;
+				margin: auto;
+				z-index: 3;
+				transparent: true;
+				background-color: rgba(0, 0, 0, 0.75); 
+				overflow: scroll;
+				overflow-y:hidden;
+				overflow-x:hidden;
+				visibility :hidden;
+				padding: 9px;
+				margin: 0px;
+			}
+			#hudWarning {
+				position: absolute;
+				top: 0%;
+				left:0%;
+				width: 100%;
+				height3: 30%;
+				margin: auto;
+				z-index: 4;
+				transparent: true;
+				background-color: rgba(0, 0, 0, 0.75); 
+				overflow: scroll;
+				overflow-y:hidden;
+				overflow-x:hidden;
+				visibility :hidden;
+				padding: 9px;
+				margin: 0px;
+			}
+			#hudPrompt {
+				position: absolute;
+				top: 10%;
+				left:10%;
+				width: 80%;
+				height3: 30%;
+				margin: auto;
+				z-index: 4;
+				transparent: true;
+				background-color: rgba(0, 0, 0, 0.75); 
+				overflow: scroll;
+				overflow-y:hidden;
+				overflow-x:hidden;
+				visibility :hidden;
+				padding: 9px;
+				margin: 0px;
+			}
+			#hudTowerMenu {
+				position: absolute;
+				top: 10%;
+				left:10%;
+				width: 80%;
+				height3: 30%;
+				margin: auto;
+				z-index: 4;
+				transparent: true;
+				background-color: rgba(0, 0, 0, 0.75); 
+				overflow: scroll;
+				overflow-y:hidden;
+				overflow-x:hidden;
+				visibility :hidden;
+				padding: 9px;
+				margin: 0px;
+			}
+			#hudZoomMenu {
+				position: absolute;
+				top: 10%;
+				left:10%;
+				width: 80%;
+				height3: 30%;
+				margin: auto;
+				z-index: 4;
+				transparent: true;
+				background-color: rgba(0, 0, 0, 0.75); 
+				overflow: scroll;
+				overflow-y:hidden;
+				overflow-x:hidden;
+				visibility :hidden;
+				padding: 9px;
+				margin: 0px;
+			}
+			a {
+				font-family: font_ttf, Geneva, sans-serif;
+				color: #FF9933;
+				text-decoration: none;
+				font-weight: bold;
+			}
+			p {
+				font-family: font_ttf, Geneva, sans-serif;
+				color: #FFF;
+				font-size: medium;
+			}
+		</style> 
+	</head>
+	<body onLoad="init()">	
+		
+		<div id="hudSelect">
+			<table width="10%" border="0" align="center" cellpadding="0" cellspacing="0">
+				<tr>
+					<td><a href="javascript:hudStartWave();"><img id="imgStart" src="./images/menustart.png" width="128" height="128"></a></td>
+					<td><a href="javascript:showTowerMenu();"><img id="imgTools" src="./images/menutools.png" width="128" height="128"></a></td>
+					<td><a href="javascript:showZoomMenu();"><img id="imgZoom" src="./images/menuzoom.png" width="128" height="128"></a></td>
+					<td><a href="index.html"><img id="imgHelp" src="./images/menuhelp.png" width="128" height="128"></a></td>
+				</tr>
+			</table>
+			<!--			
+			<p align="center"><a href="javascript:closeHudSelection();">закрыть</a>
+			| <a href="crystalhelp.html">помощь</a>
+			| <a href="javascript:hudStartWave();">следующая волна</a>
+			| <a href="javascript:hudBuidRed();">красный</a>
+			| <a href="javascript:hudBuidGreen();">зелёный</a>			
+			| <a href="javascript:hudBuidBlue();">голубой </a>
+			| <a href="javascript:hudUpgrade();">улучшить</a>
+			| <a href="javascript:hudSell();">продать</a>
+			| <a href="javascript:fireCenter();">всё поле</a>
+			| <a href="javascript:fireZoom();">приблизить</a>
+			| <a href="javascript:fireToSelection();">по центру</a>			
+			</p>
+			-->
+	</div>
+	<div id="hudWarning">
+		<p id="warningText" align="center">123</p>			
+		<p align="center"><a href="javascript:closeHudSelection();">close</a></p>
+	</div>
+	<div id="hudPrompt">
+		<p id="promptText" align="center">123</p>			
+		<p align="center"><a href="javascript:confirmPrompt();">yes</a> | <a href="javascript:closeHudSelection();">no</a></p>
+	</div>
+	<div id="hudTowerMenu">
+		<p align="center"><a href="javascript:hudBuidRed();">red tower<span id="redBaseCost">?</span></a></p>
+		<p align="center"><a href="javascript:hudBuidGreen();">green tower<span id="greenBaseCost">?</span></a></p>
+		<p align="center"><a href="javascript:hudBuidBlue();">blue tower<span id="blueBaseCost">?</span></a></p>
+		<p align="center"><a href="javascript:hudUpgrade();">upgrade<span id="upgradeCost">?</span></a></p>
+		<p align="center"><a href="javascript:hudSell();">sell tower<span id="sellPrice">?</span></a></p>
+		<p align="center"><a href="javascript:closeHudSelection();">cancel</a></p>
+	</div>
+	<div id="hudZoomMenu">
+		<p align="center"><a href="javascript:fireCenter();">whole game field</a></p>
+		<p align="center"><a href="javascript:fireZoom();">zoom in</a></p>
+		<p align="center"><a href="javascript:fireToSelection();">zoom to selected cell</a></p>
+		<p align="center"><a href="javascript:closeHudSelection();">cancel</a></p>
+	</div>
+	<audio  id="audiopl" autoplaynope="true" loop="true" >
+		<source src="./sounds/deejokeethedeepline_-_synth_x_pop_rip.mp3" type="audio/mpeg" ></source>
+	</audio>
+	
+	
+	</body>
+</html>
