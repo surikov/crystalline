@@ -2331,7 +2331,7 @@ function canBuild() {
 		var t = towers[i];
 		if (t.xx == Math.floor((selectionX + 9) * 0.5) && t.zz == Math.floor((selectionZ + 14) * 0.5)) {
 			//console.log("found tower at " + t.xx + " x " + t.zz);
-			showWarning("Клетка уже занята кристаллом");
+			showWarning("Select empty cell");
 			return false;
 		}
 	}
@@ -2344,7 +2344,7 @@ function canBuild() {
 		 || pathArrayA[20 * (bz + 1) + bx + 1] > 0 //
 	) {
 		console.log("found road A");
-		showWarning("Нельзя ставить кристаллы на пути шаров");
+		showWarning("Can't place crystal on the road");
 		return false;
 	}
 	if (pathArrayB[20 * (bz + 0) + bx + 0] > 0 //
@@ -2353,7 +2353,7 @@ function canBuild() {
 		 || pathArrayB[20 * (bz + 1) + bx + 1] > 0 //
 	) {
 		console.log("found road B");
-		showWarning("Нельзя ставить кристаллы на пути шаров");
+		showWarning("Can't place crystal on the road");
 		return false;
 	}
 	//console.log("build ok");
@@ -2416,7 +2416,7 @@ function hudBuidRed() {
 			updateScore();
 		} else {
 			//console.log("no money");
-			showWarning("Недостаточно денег");
+			showWarning("Not enough money");
 		}
 	}
 }
@@ -2433,7 +2433,7 @@ function hudBuidGreen() {
 			updateScore();
 		} else {
 			//console.log("no money");
-			showWarning("Недостаточно денег");
+			showWarning("Not enough money");
 		}
 	}
 }
@@ -2452,7 +2452,7 @@ function hudBuidBlue() {
 
 		} else {
 			//console.log("no money");
-			showWarning("Недостаточно денег");
+			showWarning("Not enough money");
 		}
 	}
 }

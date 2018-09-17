@@ -1,3 +1,3 @@
 # crystalline
 
-[open](defense/index.html)
+[open Crystalline game](defense/index.html)
