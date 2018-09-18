@@ -1,6 +1,8 @@
 # Crystalline
 
-[Open Crystalline game](https://surikov.github.io/crystalline/defense/index.html)
+Launch [Crystalline game](https://surikov.github.io/crystalline/defense/index.html)
+
+Open [screenplay](https://youtu.be/CC8f1GLSrYg)
 
 Panorama from Web Audio Conf | Berlin
 
